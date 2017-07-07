@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/bredele/sync-now/issues"
   },
-  "homepage": "https://github.com/bredele/sync-now#readme"
+  "homepage": "https://github.com/bredele/sync-now#readme",
+  "devDependencies": {
+    "tape": "^4.7.0"
+  }
 }
