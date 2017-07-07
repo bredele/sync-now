@@ -24,7 +24,5 @@ test('should return value if promise is resolved', assert => {
       name: 'foo'
     }), 300)
   }))
-  setTimeout(() => {
-    assert.equal(data.name, 'foo')
-  }, 500)
+  setTimeout(() => assert.equal(data.name, 'foo'), 500)
 })

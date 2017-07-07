@@ -6,11 +6,42 @@
 [![pledge](https://bredele.github.io/contributing-guide/community-pledge.svg)](https://github.com/bredele/contributing-guide/blob/master/community.md)
 
 
+Built for [steroid](https://github.com/bredele/steroid), this module trap promises or streams to get property values in a synchronous way even if not resolved yet.
+
 ## Usage
 
-```javascript
+This module transforms a promise into an object where each property resolves to the data returned by the promise. Here's an example:
+
+
+```js
+const now = require('sync-now')
+
+
+const data = now(new Promise(resolve => {
+  setTimeout(() => resolve({
+    name: 'john',
+    items: ['hello', 'world']
+  }), 500)
+}))
+
+
+// when data promise is still pending
+const name = data.name.then(name => {
+  console.log(name)
+  // => john
+})
+
+
+setTimeout(() => {
+  // data promise is resolved
+  console.log(data.items)
+  // => ['hello, 'world]
+}, 1000)
 
 ```
+
+You will notice that Sync-now traps a promise and return promises for each property value you try to get before the promise resolves.
+
 
 ## Installation
 
@@ -19,6 +50,34 @@ npm install sync-now --save
 ```
 
 [![NPM](https://nodei.co/npm/sync-now.png)](https://nodei.co/npm/sync-now/)
+
+## Steroid
+
+[Steroid](https://github.com/bredele/steroid) allows to directly interpolates promises and/or streams. When used with Sync-now, it is possible to transfer chunk of HTML as fast as possible without waiting for the data to be available.
+
+
+```javascript
+const html = require('steroid')
+const now = require('sync-now')
+
+
+// sync-now accepts promises or streams
+const data = now(new Promise(resolve => {
+  setTimeout(() => resolve({
+    name: 'john',
+    items: ['hello', 'world']
+  }), 1000)
+}))
+
+
+// steroid interpolates promises or streams
+html`
+  <h1>Hello ${data.name}</h1>
+  <ul>
+    ${data.items.map(item => `<li>${item}</li>`)}
+  </ul>
+`
+```
 
 ## Question
 
