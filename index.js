@@ -13,7 +13,6 @@ module.exports = later => {
       return new Promise(resolve => {
         later.then(() => resolve(data[name]))
       })
-      console.log(target, name)
     }
   })
 }
