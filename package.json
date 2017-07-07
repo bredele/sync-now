@@ -1,0 +1,28 @@
+{
+  "name": "sync-now",
+  "version": "1.0.0",
+  "description": " ",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bredele/sync-now.git"
+  },
+  "keywords": [
+    "sync",
+    "asynchronous",
+    "promises",
+    "stream"
+  ],
+  "author": "Olivier Wietrich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bredele/sync-now/issues"
+  },
+  "homepage": "https://github.com/bredele/sync-now#readme"
+}
