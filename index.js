@@ -11,7 +11,9 @@ module.exports = later => {
   later = thenable(later, true)
   later.then(result => {
     done = true
-    data = result instanceof Array ? result[0] : result
+    data = result instanceof Array
+      ? result[0]
+      : parse(result)
   })
   return new Proxy(data, {
     get(target, name) {
@@ -21,4 +23,19 @@ module.exports = later => {
       })
     }
   })
+}
+
+/**
+ * Parse a string argument into an object and return it. Return argument
+ * otherwise.
+ *
+ * @param {String | Object} obj
+ * @return {Object}
+ * @api private
+ */
+
+function parse (obj) {
+  return typeof obj === 'string'
+    ? JSON.parse(obj)
+    : obj
 }

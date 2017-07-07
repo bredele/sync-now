@@ -28,7 +28,7 @@ test('should return value if promise is resolved', assert => {
   setTimeout(() => assert.equal(data.name, 'foo'), 500)
 })
 
-test('should work with streams as well', assert => {
+test('should work with streams object as well', assert => {
   assert.plan(1)
   const stream = new Readable({
     objectMode: true
@@ -38,6 +38,24 @@ test('should work with streams as well', assert => {
     stream.push({
       name: 'foo'
     })
+    stream.push(null)
+  }, 500)
+  const data = sync(stream)
+  data.name.then(name => {
+    assert.equal(name, 'foo')
+  })
+})
+
+test('should work with streams string as well', assert => {
+  assert.plan(1)
+  const stream = new Readable({
+    objectMode: true
+  })
+  stream._read = () => {}
+  setTimeout(() => {
+    stream.push(JSON.stringify({
+      name: 'foo'
+    }))
     stream.push(null)
   }, 500)
   const data = sync(stream)
