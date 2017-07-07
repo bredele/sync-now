@@ -1,7 +1,7 @@
 {
   "name": "sync-now",
-  "version": "1.0.0",
-  "description": " ",
+  "version": "1.0.1",
+  "description": "Trap promises or streams to get property values in a synchronous way",
   "main": "index.js",
   "directories": {
     "test": "test"
