@@ -27,5 +27,8 @@
   "homepage": "https://github.com/bredele/sync-now#readme",
   "devDependencies": {
     "tape": "^4.7.0"
+  },
+  "dependencies": {
+    "stream-then": "^1.1.0"
   }
 }
